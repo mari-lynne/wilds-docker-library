@@ -31,12 +31,13 @@ RUN wget -q --no-check-certificate http://www.openbioinformatics.org/annovar/dow
 ENV PATH="${PATH}:/annovar"
 
 # Downloading GRCh38 resources
-RUN annotate_variation.pl -buildver hg38 -downdb -webfrom annovar refGene /annovar/humandb/ \
-  && annotate_variation.pl -buildver hg38 -downdb -webfrom annovar knownGene /annovar/humandb/ \
-  && annotate_variation.pl -buildver hg38 -downdb -webfrom annovar cosmic70 /annovar/humandb/ \
-  && annotate_variation.pl -buildver hg38 -downdb -webfrom annovar esp6500siv2_all /annovar/humandb/ \
-  && annotate_variation.pl -buildver hg38 -downdb -webfrom annovar clinvar_20180603 /annovar/humandb/ \
-  && annotate_variation.pl -buildver hg38 -downdb -webfrom annovar gnomad211_exome /annovar/humandb/
+RUN annotate_variation.pl -buildver hg38 -downdb -webfrom annovar ensGene /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar dbnsfp42c /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar 1000g2015aug  /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar avsnp151 /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar clinvar_20240917 /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar regsnpintron /annovar/humandb/ \
+&& annotate_variation.pl -buildver hg38 -downdb -webfrom annovar GTEx_v8_eQTL /annovar/humandb/
 
 # Cleanup
 RUN rm -rf annovar.latest.tar.gz /annovar/humandb/hg19_*
